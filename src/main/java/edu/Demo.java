@@ -1,15 +1,16 @@
 package edu;
 
-import ChristmasShopping.Item;
-import ChristmasShopping.Shop;
-import ChristmasShopping.ShoppingBag;
-import ChristmasShopping.ShoppingList;
+import ChristmasShopping.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Demo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Item car = new Item("Car", 10);
         Item book = new Item("Book", 22);
         Item shoes = new Item("Shoes", 10);
@@ -45,6 +46,15 @@ public class Demo {
 
         System.out.println(shoppingList.returnFullPrice());
 
+        writeToJson(shoppingList);
 
+    }
+    public static void writeToJson(ShoppingList shoppingList) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        // ObjectMapper paima bet koki elementa ir gali irasyt i json
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(shoppingList);
+        FileWriter myWriterr = new FileWriter("shoppingList.json");
+        myWriterr.write(json);
+        myWriterr.close();
     }
 }

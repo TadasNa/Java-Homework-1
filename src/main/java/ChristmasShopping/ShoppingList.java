@@ -3,6 +3,7 @@ package ChristmasShopping;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ShoppingList {
     private List<Shop> shops;
 
@@ -18,5 +19,9 @@ public class ShoppingList {
         return shops.stream()
                 .mapToDouble(shop -> shop.getShoppingBag().getTotalPrice())
                 .sum();
+    }
+
+    public List<Shop> getShops() {
+        return shops;
     }
 }
